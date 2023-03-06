@@ -53,7 +53,7 @@ public class MybatisPlusGeneratorUtils {
                 .setOutputDir(srcPath)
                 .setEnableCache(false)
                 .setBaseResultMap(true)
-                .setBaseColumnList(false)
+                .setBaseColumnList(true)
                 .setKotlin(false)
                 .setDateType(DateType.ONLY_DATE)
                 .setActiveRecord(false)
