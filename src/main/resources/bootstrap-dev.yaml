@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: happy-api
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: 7c94cc8a-a61a-4a3c-8335-120211aa0be8
+        file-extension: yaml
