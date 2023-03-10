@@ -12,15 +12,18 @@ import com.happy.base.BasePO;
 import java.io.File;
 import java.util.ArrayList;
 
-public class MybatisPlusGeneratorUtils {
+public class MybatisPlusGeneratorUtils330 {
 
     /**
      * 表前缀
      */
+    // TODO: 表前缀
     private static final String TABLE_PREFIX = "sys_";
-
-    private static final String PACKAGE_NAME = "com.happy.sys.user";
-
+    // TODO: 注意注意注意 =======不同包路径需修改此值
+    private static final String PACKAGE_NAME = "com.happy.sys";
+    // TODO: 注意注意注意 =======同一包路径下不同模块需修改此值
+    private static final String MODULE_NAME = "user";
+    // TODO: 需要代码生成的表名，支持多个表名
     private static final String[] TABLE_NAME ={"sys_user"};
 
     public static void main(String[] args) {
@@ -29,7 +32,6 @@ public class MybatisPlusGeneratorUtils {
 
 
     private static void generateByTables() {
-
         StrategyConfig strategyConfig = new StrategyConfig();
         strategyConfig.setCapitalMode(true)
                 .setSuperEntityClass(BasePO.class)
@@ -45,7 +47,7 @@ public class MybatisPlusGeneratorUtils {
                     add(new TableFill("create_date", FieldFill.INSERT));
                     add(new TableFill("update_date", FieldFill.INSERT_UPDATE));
                 }})
-                .setInclude(MybatisPlusGeneratorUtils.TABLE_NAME);
+                .setInclude(MybatisPlusGeneratorUtils330.TABLE_NAME);
 
         String srcPath = "src" + File.separator + "main" + File.separator + "java";
         GlobalConfig globalConfig = new GlobalConfig();
@@ -60,7 +62,8 @@ public class MybatisPlusGeneratorUtils {
                 .setFileOverride(true)
                 .setEntityName("%sPO")
                 .setControllerName("%sApi")
-                .setServiceName("I%sService");
+                .setServiceName("I%sService")
+                .setMapperName("I%sMapper");
 
         AutoGenerator autoGenerator = new AutoGenerator();
         autoGenerator.setGlobalConfig(globalConfig)
@@ -68,13 +71,13 @@ public class MybatisPlusGeneratorUtils {
                 .setStrategy(strategyConfig)
                 .setPackageInfo(new PackageConfig()
                         .setParent(PACKAGE_NAME)
+                        .setModuleName(MODULE_NAME)
                         .setController("api")
                         .setService("service")
                         .setServiceImpl("service.impl")
                         .setEntity("dao.po")
                         .setMapper("dao.mapper")
                         .setXml("dao.mapper.xml")
-                        .setModuleName("")
                 ).execute();
     }
 

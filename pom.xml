@@ -18,7 +18,7 @@
         <spring-cloud-alibaba.version>2021.0.1.0</spring-cloud-alibaba.version>
         <mybatis-plus.version>3.3.0</mybatis-plus.version>
         <velocity.version>2.0</velocity.version>
-        <druid-spring-boot-starter.version>1.2.9</druid-spring-boot-starter.version>
+        <druid-spring-boot-starter.version>1.1.21</druid-spring-boot-starter.version>
         <log4j.version>2.20.0</log4j.version>
         <disruptor.version>3.4.2</disruptor.version>
     </properties>
@@ -153,6 +153,19 @@
         </dependencies>
     </dependencyManagement>
     <build>
+        <finalName>${project.name}</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>src/main/java</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

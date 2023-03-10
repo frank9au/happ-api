@@ -1,0 +1,26 @@
+package ${package.Service};
+
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import ${package.Entity}.${entity};
+import ${superServiceClassPackage};
+
+import java.util.List;
+
+/**
+ * <p>
+ * $!{table.comment} 服务类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+#if(${kotlin})
+interface ${table.serviceName} : ${superServiceClass}<${entity}>
+#else
+public interface ${table.serviceName} extends ${superServiceClass}<${entity}> {
+    ${entity} saveOrModify(${entity} userPO);
+    ${entity} detail(Long id);
+    Boolean delete(Long id);
+    List<${entity}> selectListByPage(IPage<${entity}> page, ${entity} ${entity.substring(0,1).toLowerCase()}${entity.substring(1)});
+}
+#end

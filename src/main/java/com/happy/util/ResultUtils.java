@@ -1,7 +1,9 @@
 package com.happy.util;
 
+import com.happy.base.BaseReqDTO;
 import com.happy.base.BaseRespDTO;
 import com.happy.enums.ReturnEnums;
+import org.springframework.beans.BeanUtils;
 import org.springframework.util.StringUtils;
 
 import javax.xml.bind.ValidationException;
@@ -34,6 +36,17 @@ public class ResultUtils {
         return baseRespDTO;
     }
 
+    public static BaseRespDTO bizSuccess(BaseReqDTO baseReqDTO, String bizData){
+        BaseRespDTO baseRespDTO = new BaseRespDTO();
+        BeanUtils.copyProperties(baseReqDTO, baseRespDTO);
+        baseRespDTO.setCode(ReturnEnums.OP_SUCCESS.getCode());
+        baseRespDTO.setMsg(ReturnEnums.OP_SUCCESS.getMessage());
+        baseRespDTO.setSubCode(ReturnEnums.SUB_SUCCESS.getCode());
+        baseRespDTO.setSubMsg(ReturnEnums.SUB_SUCCESS.getMessage());
+        baseRespDTO.setBizData(StringUtils.hasText(bizData)?bizData:"");
+        return baseRespDTO;
+    }
+
     public static BaseRespDTO bizFail(){
         BaseRespDTO baseRespDTO = new BaseRespDTO();
         baseRespDTO.setCode(ReturnEnums.OP_SUCCESS.getCode());
@@ -45,6 +58,16 @@ public class ResultUtils {
 
     public static BaseRespDTO bizFail(ReturnEnums subReturnEnum){
         BaseRespDTO baseRespDTO = new BaseRespDTO();
+        baseRespDTO.setCode(ReturnEnums.OP_SUCCESS.getCode());
+        baseRespDTO.setMsg(ReturnEnums.OP_SUCCESS.getMessage());
+        baseRespDTO.setSubCode(subReturnEnum.getCode());
+        baseRespDTO.setSubMsg(subReturnEnum.getMessage());
+        return baseRespDTO;
+    }
+
+    public static BaseRespDTO bizFail(BaseReqDTO baseReqDTO, ReturnEnums subReturnEnum){
+        BaseRespDTO baseRespDTO = new BaseRespDTO();
+        BeanUtils.copyProperties(baseReqDTO, baseRespDTO);
         baseRespDTO.setCode(ReturnEnums.OP_SUCCESS.getCode());
         baseRespDTO.setMsg(ReturnEnums.OP_SUCCESS.getMessage());
         baseRespDTO.setSubCode(subReturnEnum.getCode());

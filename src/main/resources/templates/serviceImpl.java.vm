@@ -1,0 +1,72 @@
+package ${package.ServiceImpl};
+
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.happy.enums.StatusEnums;
+import ${package.Entity}.${entity};
+import ${package.Mapper}.${table.mapperName};
+import ${package.Service}.${table.serviceName};
+import ${superServiceImplClassPackage};
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
+import java.util.List;
+import java.util.Objects;
+
+/**
+ * <p>
+ * $!{table.comment} 服务实现类
+ * </p>
+ *
+ * @author ${author}
+ * @since ${date}
+ */
+@Service
+@Transactional(rollbackFor = Exception.class)
+#if(${kotlin})
+open class ${table.serviceImplName} : ${superServiceImplClass}<${table.mapperName}, ${entity}>(), ${table.serviceName} {
+
+}
+#else
+public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> implements ${table.serviceName} {
+    @Resource
+    private ${table.mapperName} ${table.mapperName.substring(1,2).toLowerCase()}${table.mapperName.substring(2)};
+
+    @Override
+    public ${entity} saveOrModify(${entity} ${entity.substring(0,1).toLowerCase()}${entity.substring(1)}) {
+        this.saveOrUpdate(${entity.substring(0,1).toLowerCase()}${entity.substring(1)});
+        return ${entity.substring(0,1).toLowerCase()}${entity.substring(1)};
+    }
+
+    @Override
+    public ${entity} detail(Long id) {
+        return this.getById(id);
+    }
+
+    @Override
+    public Boolean delete(Long id) {
+        ${entity} ${entity.substring(0,1).toLowerCase()}${entity.substring(1)} = this.getById(id);
+        if(Objects.isNull(${entity.substring(0,1).toLowerCase()}${entity.substring(1)})) {
+            return false;
+        }
+        if(StatusEnums.DELETED.getCode() == ${entity.substring(0,1).toLowerCase()}${entity.substring(1)}.getStatus()){
+            return true;
+        }
+        UpdateWrapper<${entity}> wrapper = new UpdateWrapper<>();
+        wrapper.lambda().set(${entity}::getStatus, StatusEnums.DELETED.getCode())
+                    .eq(${entity}::getId, id);
+        int update = ${table.mapperName.substring(1,2).toLowerCase()}${table.mapperName.substring(2)}.update(null, wrapper);
+        if(update > 0){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public List<${entity}> selectListByPage(IPage<${entity}> page, ${entity} ${entity.substring(0,1).toLowerCase()}${entity.substring(1)}) {
+        List<${entity}> ${entity.substring(0,1).toLowerCase()}${entity.substring(1)}List = ${table.mapperName.substring(1,2).toLowerCase()}${table.mapperName.substring(2)}.selectListByPage(page, ${entity.substring(0,1).toLowerCase()}${entity.substring(1)});
+        return ${entity.substring(0,1).toLowerCase()}${entity.substring(1)}List;
+    }
+}
+#end
