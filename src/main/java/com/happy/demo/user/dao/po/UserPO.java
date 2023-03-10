@@ -1,4 +1,4 @@
-package com.happy.sys.user.dao.po;
+package com.happy.demo.user.dao.po;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;

@@ -1,8 +1,8 @@
-package com.happy.sys.user.dao.mapper;
+package com.happy.demo.user.dao.mapper;
 
-import com.happy.sys.user.dao.po.UserPO;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.happy.demo.user.dao.po.UserPO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

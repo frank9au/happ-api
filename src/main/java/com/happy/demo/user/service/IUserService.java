@@ -1,8 +1,8 @@
-package com.happy.sys.user.service;
+package com.happy.demo.user.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.happy.sys.user.dao.po.UserPO;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.happy.demo.user.dao.po.UserPO;
 
 import java.util.List;
 

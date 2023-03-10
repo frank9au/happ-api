@@ -1,12 +1,12 @@
-package com.happy.sys.user.api;
+package com.happy.demo.user.api;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.happy.base.BaseReqDTO;
 import com.happy.base.BaseRespDTO;
+import com.happy.demo.user.dao.po.UserPO;
+import com.happy.demo.user.service.IUserService;
 import com.happy.enums.ReturnEnums;
-import com.happy.sys.user.dao.po.UserPO;
-import com.happy.sys.user.service.IUserService;
 import com.happy.util.JacksonUtils;
 import com.happy.util.ResultUtils;
 

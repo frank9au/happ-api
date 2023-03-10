@@ -1,11 +1,11 @@
-package com.happy.sys.user.service.impl;
+package com.happy.demo.user.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.happy.demo.user.dao.mapper.IUserMapper;
+import com.happy.demo.user.dao.po.UserPO;
+import com.happy.demo.user.service.IUserService;
 import com.happy.enums.StatusEnums;
-import com.happy.sys.user.dao.po.UserPO;
-import com.happy.sys.user.dao.mapper.IUserMapper;
-import com.happy.sys.user.service.IUserService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
